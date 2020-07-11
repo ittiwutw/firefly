@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>แผนที่การสำรวจ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <agm-map
+    [style.height.px]="height"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+  >
+    <agm-marker
+      *ngFor="let item of firflyType1"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/org.png'"
+      (markerClick)="markerClick($event, item)"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType2"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/green.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType3"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/blue.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType4"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/red.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType5"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/brown.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType6"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/grey.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType7"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/pink.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType8"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/sa.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType9"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/pur.png'"
+    ></agm-marker>
+    <agm-marker
+      *ngFor="let item of firflyType10"
+      [latitude]="item.lat"
+      [longitude]="item.lng"
+      [iconUrl]="'../../assets/icon/black.png'"
+    ></agm-marker>
+  </agm-map>
+</ion-content>

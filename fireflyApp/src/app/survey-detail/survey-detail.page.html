@@ -1,0 +1,184 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        *ngIf="isShowDelete"
+        defaulthref="survey-list"
+      ></ion-back-button>
+      <ion-back-button
+        *ngIf="!isShowDelete"
+        defaulthref="all-survey"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>ข้อมูลที่บันทึก</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div *ngIf="isShowMap" #map id="map"></div> -->
+  <agm-map
+    *ngIf="isShowMap"
+    [style.height.px]="height"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+  >
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+  <br />
+  <ion-img
+    style="height: 100px;"
+    [src]="surveyData.img_url"
+    *ngIf="surveyData.img_url && !isShowDelete"
+  ></ion-img>
+  <ion-img
+    style="height: 100px;"
+    [src]="surveyData.imgView"
+    *ngIf="surveyData.imgView && isShowDelete"
+  ></ion-img>
+  <ion-list class="ion-padding">
+    <ion-item>
+      <ion-label position="floating">
+        วันที่สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-datetime
+        disabled="true"
+        [(ngModel)]="surveyData.date"
+        displayFormat="MM/DD/YYYY"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        เวลาที่สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-input disabled="true" [value]="surveyData.time"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        ตำบลที่สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.province"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        ผู้สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.name"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        เบอร์โทร
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.phone"
+        type="number"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        E-mail
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.email"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        แสงไฟรบกวน
+      </ion-label>
+      <ion-select [(ngModel)]="surveyData.light" class="select-full-width" disabled="true">
+        <ion-select-option value="มี">มี</ion-select-option>
+        <ion-select-option value="ไม่มี">ไม่มี</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        ลักษณะพื้นที่สำรวจ
+      </ion-label>
+      <ion-select [(ngModel)]="surveyData.light_id" class="select-full-width" disabled="true">
+        <ion-select-option value="1">พื้นที่ชายเลน</ion-select-option>
+        <ion-select-option value="2">บ่อน้ำหรือท้องร่องสวน</ion-select-option>
+        <ion-select-option value="3">สวนรอบบ้าน</ion-select-option>
+        <ion-select-option value="4">สวนป่า</ion-select-option>
+        <ion-select-option value="99">อื่นๆ</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        สภาพอากาศ
+      </ion-label>
+      <ion-select
+        [(ngModel)]="surveyData.position_id"
+        class="select-full-width"
+        disabled="true"
+      >
+        <ion-select-option value="1">อากาศปลอดโปร่ง</ion-select-option>
+        <ion-select-option value="2">ครึ้มก่อนฝนตก</ion-select-option>
+        <ion-select-option value="3">หลังฝนตก</ion-select-option>
+        <ion-select-option value="4">ร้อนอบอ้าว</ion-select-option>
+        <ion-select-option value="99">อื่นๆ</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        พิกัด
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.coordinates"
+        type="text"
+        placeholder="(เช่น 13.677223, 100.582591)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        ชนิดของหิ่งห้อยที่พบ
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.firefly_type"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        จำนวน
+      </ion-label>
+      <ion-input
+        disabled="true"
+        [(ngModel)]="surveyData.fireflycount"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        หมายเหตุ
+      </ion-label>
+      <ion-textarea
+        disabled="true"
+        [(ngModel)]="surveyData.remark"
+        rows="3"
+      ></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <ion-button
+    *ngIf="isShowDelete"
+    class="ion-padding"
+    expand="block"
+    color="danger"
+    (click)="onClickDelete()"
+    >ลบข้อมูล</ion-button
+  >
+  <br />
+</ion-content>

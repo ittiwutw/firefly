@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ข้อมูลส่วนตัว</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">
+        ชื่อผู้สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-input [disabled]="!isEdit" [(ngModel)]="profile.name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        เบอร์โทร
+      </ion-label>
+      <ion-input [disabled]="!isEdit" [(ngModel)]="profile.tel" type="tel"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        E-mail
+      </ion-label>
+      <ion-input [disabled]="!isEdit" [(ngModel)]="profile.email" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!isEdit">
+      <ion-label position="floating">
+        ตำบลที่สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-input [value]="profile.province.name" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isEdit">
+      <ion-label position="floating">
+        ตำบลที่สำรวจหิ่งห้อย
+      </ion-label>
+      <ion-select [disabled]="!isEdit" [(ngModel)]="profile.province" class="select-full-width">
+        <ion-select-option *ngFor="let province of provinceList" [value]="province">{{province.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" *ngIf="isEdit" (click)="onClickSave()">บันทึกข้อมูล</ion-button>
+  <ion-button expand="block" *ngIf="!isEdit" (click)="onClickEdit()">แก้ไขข้อมูล</ion-button>
+</ion-content>

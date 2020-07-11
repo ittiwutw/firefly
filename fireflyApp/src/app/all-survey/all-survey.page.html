@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ข้อมูลในระบบ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" *ngFor="let survey of surveys; let i = index" (click)="onClickDetail(survey, i)" >
+    <ion-item>
+      <ion-label>
+        <strong>วันที่สำรวจหิงห้อย</strong>
+        <p>{{survey.date | date: 'dd/MM/yyyy'}} {{survey.time}}</p>
+        <strong>สถานที่สำรวจ</strong>
+        <p>{{survey.area}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
